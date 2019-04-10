@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>primeiro-projeto</title>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <!-- {{titulo}} = databind -->
+    <!-- <h1>{{titulo}}</h1> -->
+
+    <!-- proprity bind -->
+    <!-- <a v-bind:href="link">teste</a> -->
+    <!-- ou -->
+    <!-- <a :href="link">teste</a> -->
+
+    <!-- show array -->
+    <!-- <p>{{arr.nome}}</p> -->
+
+    <div class="row mt-5">
+      <div class="col-lg-12">
+        <h2>Campeonato série A</h2>
+        <br>
+        <button class="btn btn-primary" v-on:click="novo()">Novo jogo</button>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <div class="col-lg-12"  v-if="view == 'tabela'">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th v-for="coluna in colunas">{{coluna | letraMaiscula}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="time in times">
+              <td>
+                <img :src="time.escudo">
+                <strong>{{time.nome}}</strong>
+              </td>
+              <td>
+                {{time.pontos}}
+              </td>
+              <td>{{time.gm}}</td>
+              <td>{{time.gs}}</td>
+              <td>{{time | saldo}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-12"  v-else>
+          <form action="" class="form-inline">
+            <div class="form-group">
+              <input class="form-control" v-model="novoJogo.casa.gols">
+              <label class="control-label">
+                {{novoJogo.casa.time.nome}}
+                <img :src="novoJogo.casa.time.escudo" style="height: 30px; width: 30px;">
+              </label>
+            </div>
+  
+            <span class="mx-3">x</span>
+  
+            <div class="form-group">
+              <label class="control-label">
+                <img :src="novoJogo.fora.time.escudo" style="height: 30px; width: 30px;">
+                {{novoJogo.fora.time.nome}}
+              </label>
+              <input class="form-control" v-model="novoJogo.fora.gols">
+            </div>
+  
+            <button type="button" class="btn btn-primary ml-3" v-on:click="fimJogo()">Fim de jogo</button>
+          </form>
+        </div>
+    </div>
+  </div>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="/dist/build.js"></script>
+</body>
+
+</html>
